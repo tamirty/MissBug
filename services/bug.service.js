@@ -2,11 +2,16 @@ import { utilService } from "./util.service.js"
 
 export const bugService = {
     query,
+    getById,
 }
 
 const bugs = utilService.readJsonFile('./data/bug.json')
 
-function query () {
+function query() {
     return Promise.resolve(bugs)
 }
-console.log(bugs)
+
+function getById(bugId) {
+    const bug = bugs.find(bug => bug._id === bugId)
+    return Promise.resolve(bug)
+}

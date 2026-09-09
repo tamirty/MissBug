@@ -8,6 +8,14 @@ app.get('/api/bug', (req, res) => {
         .then(bugs => res.send(bugs))
 })
 
+app.get('/api/bug/save', (req, res) => {
+    const { id: _id, title, description, severity } = req.query
+    const bugToSave = { _id, title, description, severity: +severity, createdAt: Date.now() }
+
+    bugService.save(bugToSave)
+        .then(savedBug => res.send(savedBug))
+})
+
 app.get('/api/bug/:bugId', (req, res) => {
     const { bugId } = req.params
 
@@ -17,11 +25,9 @@ app.get('/api/bug/:bugId', (req, res) => {
 
 app.get('/api/bug/:bugId/remove', (req, res) => {
     const { bugId } = req.params
-    
+
     bugService.remove(bugId)
         .then(() => res.send(`${bugId} Deleted`))
-
 })
-app.get('/api/bug/save', (req, res) => { })
 
 app.listen(3030, () => console.log('Server ready at port 3030'))

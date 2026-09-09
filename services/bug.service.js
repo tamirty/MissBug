@@ -4,6 +4,7 @@ export const bugService = {
     query,
     getById,
     remove,
+    save,
 }
 
 const path = './data/bug.json'
@@ -25,6 +26,18 @@ function remove(bugId) {
     return _saveBugs()
 }
 
+function save(bugToSave) {
+    if (bugToSave._id) {
+        const bugIdx = bugs.findIndex(bug => bug._id === bugToSave.Id)
+        bugs.splice(bugIdx, 1, bugToSave)
+    } else {
+        bugToSave._id = utilService.makeId()
+        bugs.push(bugToSave)
+    }
+    return _saveBugs()
+        .then(() => bugToSave)
+}
+
 function _saveBugs() {
-   return utilService.writeJsonFile(path, bugs)
+    return utilService.writeJsonFile(path, bugs)
 }

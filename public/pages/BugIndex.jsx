@@ -23,7 +23,7 @@ export function BugIndex() {
             .then(() => {
                 const bugsToUpdate = bugs.filter(bug => bug._id !== bugId)
                 setBugs(bugsToUpdate)
-                showSuccessMsg('Bug removed')
+                showSuccessMsg(`Bug ${bugId} removed`)
             })
             .catch((err) => showErrorMsg(`Cannot remove bug`, err))
     }
@@ -44,10 +44,11 @@ export function BugIndex() {
     }
 
     function onEditBug(bug) {
+        const title = prompt('New title?', bug.title)
         const severity = +prompt('New severity?', bug.severity)
         if (!severity || severity === bug.severity) return
 
-        const bugToSave = { ...bug, severity }
+        const bugToSave = { ...bug, title, severity }
 
         bugService.save(bugToSave)
             .then(savedBug => {
@@ -65,19 +66,19 @@ export function BugIndex() {
     }
 
     return <section className="bug-index main-content">
-        
+
         <header>
             <h2>Bug List</h2>
             <button onClick={onAddBug}>Add Bug</button>
         </header>
-        
-        <BugFilter 
-            filterBy={filterBy} 
+
+        <BugFilter
+            filterBy={filterBy}
             onSetFilterBy={onSetFilterBy} />
 
-        <BugList 
-            bugs={bugs} 
-            onRemoveBug={onRemoveBug} 
+        <BugList
+            bugs={bugs}
+            onRemoveBug={onRemoveBug}
             onEditBug={onEditBug} />
     </section>
 }

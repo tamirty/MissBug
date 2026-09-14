@@ -35,15 +35,16 @@ function getById(bugId) {
 }
 
 function remove(bugId) {
-    return storageService.remove(STORAGE_KEY, bugId)
+    return axios.get(BASE_URL + bugId + '/remove')
+        .then(res => res.data)
 }
 
 function save(bug) {
-    if (bug._id) {
-        return storageService.put(STORAGE_KEY, bug)
-    } else {
-        return storageService.post(STORAGE_KEY, bug)
-    }
+    var queryParmas = `save?title=${bug.title}&severity=${bug.severity}&description=${bug.description}`
+    if (bug._id) queryParmas += `&id=${bug._id}`
+
+    return axios.get(BASE_URL + queryParmas)
+        .then(res => res.data)
 }
 
 function getDefaultFilter() {

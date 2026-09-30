@@ -6,6 +6,7 @@ import { bugService } from './services/bug.service.js'
 const app = express()
 app.use(express.static('public'))
 app.use(cookieParser())
+app.use(express.json())
 
 app.get('/api/bug', (req, res) => {
     bugService.query()
@@ -38,7 +39,7 @@ app.get('/api/bug/:bugId', (req, res) => {
         .catch(err => res.status(400).send('cannot get bug'))
 })
 
-app.get('/api/bug/:bugId/remove', (req, res) => {
+app.delete('/api/bug/:bugId', (req, res) => {
     const { bugId } = req.params
 
     bugService.remove(bugId)

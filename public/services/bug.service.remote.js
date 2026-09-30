@@ -40,11 +40,13 @@ function remove(bugId) {
 }
 
 function save(bug) {
-    var queryParmas = `save?title=${bug.title}&severity=${bug.severity}&description=${bug.description}`
-    if (bug._id) queryParmas += `&id=${bug._id}`
-
-    return axios.get(BASE_URL + queryParmas)
-        .then(res => res.data)
+    if (bug._id) {
+        return axios.put(BASE_URL + `${bug._id}`, bug)
+            .then(res => res.data)
+    } else {
+        return axios.post(BASE_URL, bug)
+            .then(res => res.data)
+    }
 }
 
 function getDefaultFilter() {

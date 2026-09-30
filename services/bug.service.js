@@ -28,8 +28,8 @@ function remove(bugId) {
 
 function save(bugToSave) {
     if (bugToSave._id) {
-        const bugIdx = bugs.findIndex(bug => bug._id === bugToSave.Id)
-        bugs.splice(bugIdx, 1, bugToSave)
+        const bugIdx = bugs.findIndex(bug => bug._id === bugToSave._id)
+        bugs[bugIdx] = { ...bugs[bugIdx], ...bugToSave }
     } else {
         bugToSave._id = utilService.makeId()
         bugs.push(bugToSave)

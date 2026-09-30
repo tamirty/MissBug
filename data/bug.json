@@ -12,5 +12,26 @@
     "description": "mouse replace",
     "severity": 4,
     "createdAt": 1789408028521
+  },
+  {
+    "_id": "wWXYp",
+    "title": "keyboard",
+    "description": "keys not work",
+    "severity": 5,
+    "createdAt": 1790789683517
+  },
+  {
+    "title": "screen",
+    "description": "screen not good",
+    "severity": 15,
+    "createdAt": 1790791647151,
+    "_id": "uL7jz"
+  },
+  {
+    "title": "network",
+    "description": "network slow",
+    "severity": null,
+    "createdAt": 1790791915861,
+    "_id": "8SaX6"
   }
 ]

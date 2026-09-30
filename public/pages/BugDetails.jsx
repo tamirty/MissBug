@@ -12,7 +12,13 @@ export function BugDetails() {
     useEffect(() => {
         bugService.getById(bugId)
             .then(bug => setBug(bug))
-            .catch(err => showErrorMsg(`Cannot load bug`, err))
+            .catch(err => {
+                if (err.response.status === 401) {
+                    showErrorMsg(`Request limit reached`, err)
+                } else {
+                    showErrorMsg(`Cannot load bug`, err)
+                }
+            })
     }, [])
 
     return <div className="bug-details main-content">

@@ -9,17 +9,22 @@ app.use(cookieParser())
 app.use(express.json())
 
 app.get('/api/bug', (req, res) => {
-    bugService.query()
+    const filterBy = {
+        txt: req.query.txt || '',
+        minSeverity: +req.query.minSeverity || 0,
+    }
+
+    bugService.query(filterBy)
         .then(bugs => res.send(bugs))
 })
 
 app.put('/api/bug/:bugId', (req, res) => {
-    const bugToSave = { 
-        _id: req.body._id, 
-        title: req.body.title, 
-        description: req.body.description, 
-        severity: req.body.severity, 
-        createdAt: Date.now(), 
+    const bugToSave = {
+        _id: req.body._id,
+        title: req.body.title,
+        description: req.body.description,
+        severity: req.body.severity,
+        createdAt: Date.now(),
     }
 
     bugService.save(bugToSave)
@@ -27,11 +32,11 @@ app.put('/api/bug/:bugId', (req, res) => {
 })
 
 app.post('/api/bug', (req, res) => {
-    const bugToSave = { 
-        title: req.body.title, 
-        description: req.body.description, 
-        severity: req.body.severity, 
-        createdAt: Date.now(), 
+    const bugToSave = {
+        title: req.body.title,
+        description: req.body.description,
+        severity: req.body.severity,
+        createdAt: Date.now(),
     }
 
     bugService.save(bugToSave)

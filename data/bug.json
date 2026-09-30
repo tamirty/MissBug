@@ -30,8 +30,15 @@
   {
     "title": "network",
     "description": "network slow",
-    "severity": null,
-    "createdAt": 1790791915861,
+    "severity": 90,
+    "createdAt": 1790792618842,
     "_id": "8SaX6"
+  },
+  {
+    "title": "hdmi",
+    "description": "cable too short",
+    "severity": 3,
+    "createdAt": 1790793860534,
+    "_id": "ymJ5G"
   }
 ]

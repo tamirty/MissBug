@@ -10,7 +10,7 @@ export const bugService = {
 const path = './data/bug.json'
 const bugs = utilService.readJsonFile('./data/bug.json')
 
-function query(filterBy = {}) {
+function query(filterBy = {}, sortBy) {
     let filteredBugs = [...bugs]
 
     if (filterBy.txt) {
@@ -20,6 +20,20 @@ function query(filterBy = {}) {
 
     if (filterBy.minSeverity) {
         filteredBugs = filteredBugs.filter(bug => bug.severity >= filterBy.minSeverity)
+    }
+
+    if (filterBy.labels && filterBy.labels > 0) {
+        filteredBugs = filteredBugs.labels.some(label => bug.labels?.includes(label))
+    }
+
+    if (sortBy.sortField === 'severity' || sortBy.sortField === 'createdAt') {
+        const { sortField } = sortBy
+
+        filteredBugs.sort((bug1, bug2) =>
+            (bug1[sortField] - bug2[sortField] * sortBy.sortDir))
+    } else if (sortBy.sortField === 'title') {
+        filteredBugs.sort((bug1, bug2) =>
+            (bug1.title.localeCompare(bug2.title)) * sortBy.sortDir)
     }
 
     return Promise.resolve(filteredBugs)
@@ -43,6 +57,7 @@ function save(bugToSave) {
         bugs[bugIdx] = { ...bugs[bugIdx], ...bugToSave }
     } else {
         bugToSave._id = utilService.makeId()
+        bugToSave.createdAt = Date.now()
         bugs.push(bugToSave)
     }
     return _saveBugs()

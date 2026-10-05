@@ -14,7 +14,12 @@ app.get('/api/bug', (req, res) => {
         minSeverity: +req.query.minSeverity || 0,
     }
 
-    bugService.query(filterBy)
+    const sortBy = {
+        sortField: req.query.sortField || '',
+        sortDir: +req.query.sortDir || 1,
+    }
+
+    bugService.query(filterBy,sortBy)
         .then(bugs => res.send(bugs))
 })
 
@@ -24,7 +29,6 @@ app.put('/api/bug/:bugId', (req, res) => {
         title: req.body.title,
         description: req.body.description,
         severity: req.body.severity,
-        createdAt: Date.now(),
     }
 
     bugService.save(bugToSave)
@@ -36,7 +40,6 @@ app.post('/api/bug', (req, res) => {
         title: req.body.title,
         description: req.body.description,
         severity: req.body.severity,
-        createdAt: Date.now(),
     }
 
     bugService.save(bugToSave)

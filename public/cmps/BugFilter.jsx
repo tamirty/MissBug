@@ -8,6 +8,10 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
         onSetFilterBy(filterByToEdit)
     }, [filterByToEdit])
 
+    function resetSort() {
+        setFilterByToEdit(prev => ({ ...prev, sortField: '', sortDir: 1 }))
+    }
+
     function handleChange({ target }) {
         const field = target.name
         let value = target.value
@@ -103,7 +107,7 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
                     </label>
                 </div>
 
-                {/* <button onClick={resetSort}>Clear Sort</button> */}
+                <button onClick={resetSort}>Clear Sort</button>
             </div>
         </form>
     )

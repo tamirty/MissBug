@@ -10,7 +10,7 @@ export function LoginSignup({ setLoggedinUser }) {
 
     const [isSignup, setIsSignUp] = useState(false)
     const [credentials, setCredentials] = useState(userService.getEmptyCredentials())
-    
+
     const navigate = useNavigate()
 
     function handleChange({ target }) {
@@ -28,11 +28,11 @@ export function LoginSignup({ setLoggedinUser }) {
             .then(user => {
                 setLoggedinUser(user)
                 showSuccessMsg('Logged in successfully')
-                navigate('/car')
+                navigate('/bug')
             })
-            .catch(err => { 
+            .catch(err => {
                 console.log(err)
-                showErrorMsg(`Couldn't login...`) 
+                showErrorMsg(`Couldn't login...`)
             })
     }
 
@@ -41,11 +41,11 @@ export function LoginSignup({ setLoggedinUser }) {
             .then(user => {
                 setLoggedinUser(user)
                 showSuccessMsg('Signed in successfully')
-                navigate('/car')
+                navigate('/bug')
             })
-            .catch(err => { 
+            .catch(err => {
                 console.log(err)
-                showErrorMsg(`Couldn't signup...`) 
+                showErrorMsg(`Couldn't signup...`)
             })
     }
 
@@ -82,12 +82,12 @@ export function LoginSignup({ setLoggedinUser }) {
             </form>
 
             <div className="btns">
-                <a href="#" onClick={() => setIsSignUp(!isSignup)}>
+                <button type='button' onClick={() => setIsSignUp(!isSignup)}>
                     {isSignup ?
                         'Already a member? Login' :
                         'New user? Signup here'
                     }
-                </a >
+                </button>
             </div>
         </div >
     )

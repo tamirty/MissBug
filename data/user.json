@@ -27,5 +27,11 @@
     "fullname": "bob",
     "isAdmin": true,
     "_id": "GOtHH"
+  },
+  {
+    "username": "Jimmi",
+    "password": "123",
+    "fullname": "Jimmi Jones",
+    "_id": "O9ZVj"
   }
 ]

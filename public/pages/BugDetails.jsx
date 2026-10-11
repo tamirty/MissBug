@@ -24,13 +24,11 @@ export function BugDetails() {
     return <div className="bug-details main-content">
         <h2>Bug Details</h2>
         {!bug && <p className="loading">Loading....</p>}
-        {
-            bug &&
-            <div>
-                <h3>{bug.title}</h3>
-                <p className="severity">Severity: <span>{bug.severity}</span></p>
-                <p>{bug.description}</p>
-            </div>
+        {bug && <div>
+            <h3>{bug.title}</h3>
+            <p className="severity">Severity: <span>{bug.severity}</span></p>
+            <p>{bug.description}</p>
+        </div>
         }
         <button><Link to="/bug">Back to List</Link></button>
     </div>

@@ -4,48 +4,43 @@
     "title": "speakers loud",
     "description": "no sound",
     "severity": 10,
-    "createdAt": 1790951303711
+    "createdAt": 1790951303711,
+    "creator": {
+      "_id": "u101",
+      "fullname": "Puki Ja"
+    }
   },
   {
     "_id": "JZcvG",
     "title": "Mouse not move",
     "description": "mouse replace",
     "severity": 12,
-    "createdAt": 1789408028521
+    "createdAt": 1789408028521,
+    "creator": {
+      "_id": "u102",
+      "fullname": "Muki Ba"
+    }
   },
   {
     "_id": "wWXYp",
     "title": "keyboard",
     "description": "keys not work",
     "severity": 5,
-    "createdAt": 1790789683517
+    "createdAt": 1790789683517,
+    "creator": {
+      "_id": "u103",
+      "fullname": "Duki La"
+    }
   },
   {
     "title": "screen",
     "description": "screen not good",
     "severity": 15,
     "createdAt": 1790791647151,
-    "_id": "uL7jz"
-  },
-  {
-    "title": "network",
-    "description": "network slow",
-    "severity": 2,
-    "createdAt": 1790792618842,
-    "_id": "8SaX6"
-  },
-  {
-    "title": "hdmi",
-    "description": "cable too short",
-    "severity": 3,
-    "createdAt": 1790793860534,
-    "_id": "ymJ5G"
-  },
-  {
-    "title": "cable hd",
-    "description": "tookie",
-    "severity": 20,
-    "_id": "pUzix",
-    "createdAt": 1790951111009
+    "_id": "uL7jz",
+    "creator": {
+      "_id": "u101",
+      "fullname": "Puki Ja"
+    }
   }
 ]

@@ -6,7 +6,7 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { BugFilter } from '../cmps/BugFilter.jsx'
 import { BugList } from '../cmps/BugList.jsx'
 
-export function BugIndex() {
+export function BugIndex({ loggedinUser }) {
     const [bugs, setBugs] = useState(null)
     const [filterBy, setFilterBy] = useState(bugService.getDefaultFilter())
 
@@ -32,7 +32,11 @@ export function BugIndex() {
         const bug = {
             title: prompt('Bug title?', 'Bug ' + Date.now()),
             severity: +prompt('Bug severity?', 3),
-            description: prompt('Add bug description')
+            description: prompt('Add bug description'),
+            creator: {
+                _id: loggedinUser._id,
+                fullname: loggedinUser.fullname
+            }
         }
 
         bugService.save(bug)

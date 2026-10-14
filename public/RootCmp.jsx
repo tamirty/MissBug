@@ -23,7 +23,7 @@ export function App() {
             <main>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/bug" element={<BugIndex />} />
+                    <Route path="/bug" element={<BugIndex loggedinUser={loggedinUser}/>} />
                     <Route path="/auth" element={<LoginSignup setLoggedinUser={setLoggedinUser} />} />
                     <Route path="/bug/:bugId" element={<BugDetails />} />
                     <Route path="/about" element={<AboutUs />} />

@@ -43,6 +43,7 @@ app.post('/api/bug', (req, res) => {
         title: req.body.title,
         description: req.body.description,
         severity: req.body.severity,
+        creator: req.body.creator
     }
 
     bugService.save(bugToSave)

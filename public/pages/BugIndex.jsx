@@ -35,6 +35,8 @@ export function BugIndex({ loggedinUser }) {
             description: prompt('Add bug description'),
         }
 
+        if (!bug.title || !bug.title.trim() || !bug.severity) return
+
         if (loggedinUser) {
             bug.creator = {
                 _id: loggedinUser._id,

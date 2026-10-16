@@ -23,7 +23,7 @@
   },
   {
     "_id": "wWXYp",
-    "title": "keyboard",
+    "title": "keyboard not good",
     "description": "keys not work",
     "severity": 5,
     "createdAt": 1790789683517,
@@ -33,7 +33,7 @@
     }
   },
   {
-    "title": "hdmi cable",
+    "title": "hdmi cables",
     "description": "cable",
     "severity": 15,
     "creator": {
@@ -53,5 +53,16 @@
     },
     "_id": "MKm9Q",
     "createdAt": 1792084886739
+  },
+  {
+    "title": "phone",
+    "description": "phone problem",
+    "severity": 5,
+    "creator": {
+      "_id": "GOtHH",
+      "fullname": "bob"
+    },
+    "_id": "NCR1x",
+    "createdAt": 1792138808092
   }
 ]

@@ -6,7 +6,7 @@ export function BugList({ bugs, onRemoveBug, onEditBug, loggedinUser }) {
 
     function isAllowed(bug) {
         if (!loggedinUser) return false
-        if (bug.creator._id === loggedinUser._id) return true
+        if (loggedinUser.isAdmin || bug.creator._id === loggedinUser._id) return true
     }
 
     if (!bugs) return <div>Loading...</div>

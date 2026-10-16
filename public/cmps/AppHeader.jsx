@@ -12,7 +12,7 @@ export function AppHeader({ loggedinUser, setLoggedinUser }) {
         authService.logout()
             .then(() => {
                 setLoggedinUser(null)
-                navigate('/auth')
+                // navigate('/auth')
             })
             .catch(err => {
                 console.log(err)

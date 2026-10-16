@@ -33,7 +33,10 @@ export function BugIndex({ loggedinUser }) {
             title: prompt('Bug title?', 'Bug ' + Date.now()),
             severity: +prompt('Bug severity?', 3),
             description: prompt('Add bug description'),
-            creator: {
+        }
+
+        if (loggedinUser) {
+            bug.creator = {
                 _id: loggedinUser._id,
                 fullname: loggedinUser.fullname
             }
@@ -50,7 +53,7 @@ export function BugIndex({ loggedinUser }) {
     function onEditBug(bug) {
         const title = prompt('New title?', bug.title)
         const severity = +prompt('New severity?', bug.severity)
-        if (!severity || severity === bug.severity) return
+        if (!severity) return
 
         const bugToSave = { ...bug, title, severity }
 
@@ -73,7 +76,7 @@ export function BugIndex({ loggedinUser }) {
 
         <header>
             <h2>Bug List</h2>
-            <button onClick={onAddBug}>Add Bug</button>
+            {loggedinUser && <button onClick={onAddBug}>Add Bug</button>}
         </header>
 
         <BugFilter
@@ -81,6 +84,7 @@ export function BugIndex({ loggedinUser }) {
             onSetFilterBy={onSetFilterBy} />
 
         <BugList
+            loggedinUser={loggedinUser}
             bugs={bugs}
             onRemoveBug={onRemoveBug}
             onEditBug={onEditBug} />

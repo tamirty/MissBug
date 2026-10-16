@@ -27,6 +27,9 @@ app.get('/api/bug', (req, res) => {
 })
 
 app.put('/api/bug/:bugId', (req, res) => {
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send('Not Authenticated')
+
     const bugToSave = {
         _id: req.body._id,
         title: req.body.title,
@@ -34,11 +37,14 @@ app.put('/api/bug/:bugId', (req, res) => {
         severity: req.body.severity,
     }
 
-    bugService.save(bugToSave)
+    bugService.save(bugToSave, loggedinUser)
         .then(savedBug => res.send(savedBug))
 })
 
 app.post('/api/bug', (req, res) => {
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send('Not Authenticated')
+
     const bugToSave = {
         title: req.body.title,
         description: req.body.description,
@@ -46,7 +52,7 @@ app.post('/api/bug', (req, res) => {
         creator: req.body.creator
     }
 
-    bugService.save(bugToSave)
+    bugService.save(bugToSave, loggedinUser)
         .then(savedBug => res.send(savedBug))
 })
 
@@ -69,9 +75,12 @@ app.get('/api/bug/:bugId', (req, res) => {
 })
 
 app.delete('/api/bug/:bugId', (req, res) => {
+    const loggedinUser = authService.validateToken(req.cookies.loginToken)
+    if (!loggedinUser) return res.status(401).send('Not Authenticated')
+
     const { bugId } = req.params
 
-    bugService.remove(bugId)
+    bugService.remove(bugId, loggedinUser)
         .then(() => res.send(`${bugId} Deleted`))
 })
 
